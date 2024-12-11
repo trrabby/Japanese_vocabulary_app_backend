@@ -2,101 +2,149 @@
 
 ## Overview
 
-The Japanese Vocabulary Application is designed to help users learn Japanese vocabulary through interactive lessons and vocabulary entries. The app supports two types of users: Admins and Users. Admins can manage users, lessons, vocabularies, and tutorials, while Users can access lessons, view vocabularies, and learn through interactive features.
+A web application designed to help users learn Japanese vocabulary through interactive lessons and vocabulary entries. Admins can manage users, lessons, vocabularies, and tutorials, while users can access lessons and learn vocabularies interactively.
 
 ## Features
 
-### 1. Authentication
+### Authentication
 
-- **Admin**:
-  - Admin can log in and log out securely.
-- **User**:
-  - Users can log in and log out securely.
+- **Admin**: Secure login/logout.
+- **User**: Secure login/logout.
 
-### 2. Roles
+### Roles
 
-#### **Admin Features**
+#### Admin Features:
 
-1. **Manage Users**
-   - Find all users with the following details:
-     - User Name
-     - Email
-     - Current Role (Normal User or Admin)
-   - Admin can update roles (change user to admin and vice versa).
-2. **Content Management**
+- **User Management**:
+  - View all users with name, email, and role.
+  - Update user roles.
+- **Content Management**:
+  - View, add, update, and delete lessons and vocabularies.
+  - Manage lessons and vocabularies by lesson number and word.
+- **Tutorial Management**:
+  - Embed and manage YouTube tutorial links for additional learning resources (8-10 videos).
 
-   - **Find All Lessons**:
-     - View a list of all lessons with:
-       - Lesson Name
-       - Lesson Number
-       - Vocabulary Count
-   - **Add a Lesson**:
-     - Admin can add a lesson by providing:
-       - Lesson Name (e.g., "Basic Greetings")
-       - Lesson Number
-   - **Find All Vocabularies**:
-     - View a table of vocabularies with the following columns:
-       - Word
-       - Meaning
-       - Pronunciation
-       - When to Say
-       - Lesson No (Filterable)
-     - Option to **Update** or **Delete** each vocabulary.
-   - **Add a Vocabulary**:
-     - Admin can add a vocabulary with:
-       - Word
-       - Pronunciation
-       - When to say
-       - Lesson No
-       - Admin Email
-   - **Lesson Management**:
-     - Admin can **Update/Delete** lessons.
-   - **Vocabulary Management**:
-     - Admin can **Update/Delete** vocabularies.
+#### User Features:
 
-3. **Tutorial Management**:
-   - Admin can embed and manage YouTube tutorial links to provide users with additional learning resources (8-10 videos).
-
----
-
-#### **User Features**
-
-1. **Lesson Access**:
-   - Users can:
-     - View all lessons.
-     - Find a specific lesson by its lesson number.
-2. **Vocabulary Access**:
-   - Users can:
-     - View one vocabulary at a time.
-     - Navigate to the **next** or **previous** vocabulary.
-     - Pronounce the vocabulary with an audio button.
-     - Mark vocabulary as **complete** to track progress.
-
----
+- **Lesson Access**:
+  - View all lessons and specific lessons by number.
+- **Vocabulary Access**:
+  - View vocabularies, navigate between entries, listen to pronunciation, and track progress with a completion button.
 
 ## Diagram
 
-Here is the architecture diagram for the Japanese Vocabulary Application:
+Here is the architecture diagram for the application:
 
 ![System Architecture Diagram](https://example.com/diagram-path.png)
-
-The diagram above illustrates the flow of data and interaction between the components in the system.
 
 ---
 
 ## Installation
 
-To set up the application on your local machine:
-
-### Prerequisites
+### Prerequisites:
 
 - Node.js
 - MongoDB
 - TypeScript (for development)
 
-### 1. Clone the repository:
+### Steps:
 
-```bash
-git clone https://github.com/your-username/japanese-vocabulary-app.git
-cd japanese-vocabulary-app
-```
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/japanese-vocabulary-app.git
+   cd japanese-vocabulary-app
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Set up environment variables:
+   - `MONGO_URI`: MongoDB connection URI
+   - `JWT_SECRET`: JWT secret
+4. Run in development:
+   ```bash
+   npm run startDev
+   ```
+   For production:
+   ```bash
+   npm run build
+   npm run startProd
+   ```
+
+---
+
+## API Endpoints
+
+### Authentication:
+
+- **POST /auth/login**: Log in for both Admin and Users.
+  - Body:
+    ```json
+    {
+      "email": "user@example.com",
+      "password": "password123"
+    }
+    ```
+  - Response:
+    ```json
+    {
+      "token": "jwt-token"
+    }
+    ```
+
+### Admin Endpoints:
+
+#### User Management:
+
+- **GET /admin/users**: View all users.
+- **PATCH /admin/users/:id**: Update user role.
+
+#### Lesson Management:
+
+- **GET /admin/lessons**: View all lessons.
+- **POST /admin/lessons**: Add a new lesson.
+- **PATCH /admin/lessons/:id**: Update lesson.
+- **DELETE /admin/lessons/:id**: Delete lesson.
+
+#### Vocabulary Management:
+
+- **GET /admin/vocabularies**: View all vocabularies.
+- **POST /admin/vocabularies**: Add a new vocabulary.
+- **PATCH /admin/vocabularies/:id**: Update vocabulary.
+- **DELETE /admin/vocabularies/:id**: Delete vocabulary.
+
+#### Tutorial Management:
+
+- **POST /admin/tutorials**: Add a tutorial.
+  - Body:
+    ```json
+    {
+      "tutorial_name": "Introduction to Kanji",
+      "tutorial_category": "Kanji",
+      "tutorial_iFrame_url": "https://www.youtube.com/embed/example-url",
+      "created_by": "admin-objectid"
+    }
+    ```
+- **GET /admin/tutorials**: View all tutorials.
+
+---
+
+## Contribution
+
+1. Fork the repository.
+2. Create a feature branch (`git checkout -b feature-name`).
+3. Commit changes (`git commit -am 'Add new feature'`).
+4. Push to your branch (`git push origin feature-name`).
+5. Open a pull request.
+
+---
+
+## License
+
+MIT License.
+
+---
+
+## Contact
+
+For inquiries or feedback, contact us at [contact@example.com].
