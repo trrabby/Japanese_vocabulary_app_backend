@@ -33,47 +33,62 @@ const createVocabularyIntoDB = async (payload: TVocabulary) => {
   }
 };
 
-// const findAllLessons = async () => {
-//   const result = await LessonModel.aggregate([
-//     { $match: { isDeleted: false } }, // Filter documents where isDeleted is true
-//     { $sort: { _id: -1 } }, // Sort by _id in descending order
-//   ]);
+const findAllVocabularies = async () => {
+  const result = await VocabularyModel.aggregate([
+    { $match: { isDeleted: false } }, // Filter documents where isDeleted is true
+    { $sort: { _id: -1 } }, // Sort by _id in descending order
+  ]);
 
-//   return result;
-// };
+  return result;
+};
 
-// const getALesson = async (lesson_no: string) => {
-//   const result = await LessonModel.find({ lesson_no }).populate({
-//     path: 'created_by',
-//     select: 'name email photoUrl',
-//   });
-//   return result;
-// };
+const getAVocabulary = async (id: string) => {
+  const result = await VocabularyModel.findOne({ _id: id }).populate({
+    path: 'created_by',
+    select: 'name email photoUrl',
+  });
+  return result;
+};
 
-// const updateALesson = async (lesson_no: string, payload: Partial<TLesson>) => {
-//   const result = await LessonModel.findOneAndUpdate(
-//     { lesson_no }, // Match the document where the email matches
-//     payload, // Apply the update
-//     {
-//       new: true, // Return the updated document
-//       runValidators: true, // Run schema validators
-//     },
-//   );
-//   return result;
-// };
+const getLessonwiseVocabulary = async (lesson_no: string) => {
+  const result = await VocabularyModel.find({ lesson_no })
+    .sort({ createdAt: 1 })
+    .populate({
+      path: 'created_by',
+      select: 'name email photoUrl',
+    });
+  return result;
+};
 
-// const deleteALesson = async (lesson_no: string) => {
-//   const result = await LessonModel.findOneAndUpdate(
-//     { lesson_no }, // Match the document where the lesson_no matches
-//     { isDeleted: true }, // Apply the update
-//     {
-//       new: true, // Return the updated document
-//       runValidators: true, // Run schema validators
-//     },
-//   );
-//   return result;
-// };
+const updateVocabulary = async (id: string, payload: Partial<TVocabulary>) => {
+  const result = await VocabularyModel.findOneAndUpdate(
+    { _id: id }, // Match the document where the email matches
+    payload, // Apply the update
+    {
+      new: true, // Return the updated document
+      runValidators: true, // Run schema validators
+    },
+  );
+  return result;
+};
+
+const deleteAVocabulary = async (id: string) => {
+  const result = await VocabularyModel.findOneAndUpdate(
+    { _id: id }, // Match the document where the lesson_no matches
+    { isDeleted: true }, // Apply the update
+    {
+      new: true, // Return the updated document
+      runValidators: true, // Run schema validators
+    },
+  );
+  return result;
+};
 
 export const VocabularyServices = {
   createVocabularyIntoDB,
+  findAllVocabularies,
+  getAVocabulary,
+  getLessonwiseVocabulary,
+  updateVocabulary,
+  deleteAVocabulary,
 };

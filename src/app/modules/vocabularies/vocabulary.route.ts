@@ -12,15 +12,19 @@ router.post(
   VocabularyControllers.createVocabulary,
 );
 
-// router.get('/', LessonControllers.GetAllLessons);
-// router.get('/:lesson_no', LessonControllers.getALesson);
+router.get('/', VocabularyControllers.GetAllVocabularies);
+router.get('/:id', VocabularyControllers.getAVocabulary);
+router.get(
+  '/lessonwise/:lesson_no',
+  VocabularyControllers.GetLessonWiseVocabularies,
+);
 
-// router.patch(
-//   '/:lesson_no',
-//   validateRequest(LessonValidation.LessonValidationSchema),
-//   LessonControllers.updateALesson,
-// );
+router.patch(
+  '/:id',
+  validateRequest(VocabularyValidation.updateVocabularyValidationSchema),
+  VocabularyControllers.updateAVocabulary,
+);
 
-// router.delete('/:lesson_no', LessonControllers.deleteALesson);
+router.delete('/:id', VocabularyControllers.deleteAVocabulary);
 
 export const VocabularyRoutes = router;

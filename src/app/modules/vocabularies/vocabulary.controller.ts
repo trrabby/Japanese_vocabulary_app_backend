@@ -3,12 +3,10 @@ import sendResponse from '../../utils/sendResponse';
 import httpStatus from 'http-status';
 import { RequestHandler } from 'express';
 import { VocabularyServices } from './vocabulary.service';
+import customizedMsg from '../../utils/customisedMsg';
 
 const createVocabulary: RequestHandler = catchAsync(async (req, res) => {
   const payload = req.body;
-
-  console.log(payload);
-
   const result = await VocabularyServices.createVocabularyIntoDB(payload);
 
   sendResponse(res, {
@@ -19,52 +17,73 @@ const createVocabulary: RequestHandler = catchAsync(async (req, res) => {
   });
 });
 
-// const GetAllVocabularys: RequestHandler = catchAsync(async (req, res) => {
-//   const result = await VocabularyServices.findAllVocabularys();
+const GetAllVocabularies: RequestHandler = catchAsync(async (req, res) => {
+  const result = await VocabularyServices.findAllVocabularies();
 
-//   sendResponse(res, {
-//     statusCode: httpStatus.OK,
-//     success: true,
-//     message: customizedMsg(result, 'Vocabularys'),
-//     data: result,
-//   });
-// });
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: customizedMsg(result, 'Vocabularies'),
+    data: result,
+  });
+});
 
-// const getAVocabulary: RequestHandler = catchAsync(async (req, res) => {
-//   const { Vocabulary_no } = req.params;
-//   const result = await VocabularyServices.getAVocabulary(Vocabulary_no);
+const getAVocabulary: RequestHandler = catchAsync(async (req, res) => {
+  const { id } = req.params;
+  const result = await VocabularyServices.getAVocabulary(id);
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Vocabulary is retrieved successfully',
+    data: result,
+  });
+});
 
-//   sendResponse(res, {
-//     statusCode: httpStatus.OK,
-//     success: true,
-//     message: customizedMsg(result, 'Vocabularys'),
-//     data: result,
-//   });
-// });
+const GetLessonWiseVocabularies: RequestHandler = catchAsync(
+  async (req, res) => {
+    const { lesson_no } = req.params;
+    const result = await VocabularyServices.getLessonwiseVocabulary(lesson_no);
 
-// const updateAVocabulary: RequestHandler = catchAsync(async (req, res) => {
-//   const { Vocabulary_no } = req.params;
-//   const payload = req.body;
-//   const result = await VocabularyServices.updateAVocabulary(lesson_no, payload);
+    sendResponse(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: customizedMsg(result, 'Vocabularies'),
+      data: result,
+    });
+  },
+);
 
-//   sendResponse(res, {
-//     statusCode: httpStatus.OK,
-//     success: true,
-//     message: 'Lesson Updated Successfully',
-//     data: result,
-//   });
-// });
+const updateAVocabulary: RequestHandler = catchAsync(async (req, res) => {
+  const { id } = req.params;
+  const payload = req.body;
 
-// const deleteALesson: RequestHandler = catchAsync(async (req, res) => {
-//   const { lesson_no } = req.params;
-//   const result = await LessonServices.deleteALesson(lesson_no);
+  const result = await VocabularyServices.updateVocabulary(id, payload);
 
-//   sendResponse(res, {
-//     statusCode: httpStatus.OK,
-//     success: true,
-//     message: 'Lesson Deleted Successfully',
-//     data: result,
-//   });
-// });
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Vocabulary Updated Successfully',
+    data: result,
+  });
+});
 
-export const VocabularyControllers = { createVocabulary };
+const deleteAVocabulary: RequestHandler = catchAsync(async (req, res) => {
+  const { id } = req.params;
+  const result = await VocabularyServices.deleteAVocabulary(id);
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Vocabulary Deleted Successfully',
+    data: result,
+  });
+});
+
+export const VocabularyControllers = {
+  createVocabulary,
+  GetAllVocabularies,
+  getAVocabulary,
+  GetLessonWiseVocabularies,
+  updateAVocabulary,
+  deleteAVocabulary,
+};

@@ -18,7 +18,7 @@ router.get('/:email', UserControllers.getAnUser);
 
 router.patch(
   '/:email',
-  validateRequest(UserValidation.userValidationSchema),
+  validateRequest(UserValidation.updateUserValidationSchema),
   UserControllers.updateAnUser,
 );
 

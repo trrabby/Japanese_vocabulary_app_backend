@@ -17,7 +17,7 @@ router.get('/:lesson_no', LessonControllers.getALesson);
 
 router.patch(
   '/:lesson_no',
-  validateRequest(LessonValidation.LessonValidationSchema),
+  validateRequest(LessonValidation.updateLessonValidationSchema),
   LessonControllers.updateALesson,
 );
 
