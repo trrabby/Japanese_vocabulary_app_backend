@@ -37,6 +37,7 @@ Here is the architecture diagram for the application:
 
 ![System Architecture Diagram]src/
 
+src/
 ├── app/
 │ ├── modules/
 │ │ ├── users/
