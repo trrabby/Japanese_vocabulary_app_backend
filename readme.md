@@ -31,6 +31,41 @@ A web application designed to help users learn Japanese vocabulary through inter
 - **Vocabulary Access**:
   - View vocabularies, navigate between entries, listen to pronunciation, and track progress with a completion button.
 
+## API Endpoints
+
+## users
+
+*POST: api/v1/create-user
+*GET: api/v1/
+*GET: api/v1/:email
+*PATCH: api/v1/:email
+\*DELETE: api/v1/:email
+
+## Lessons
+
+*POST: api/v1/create-lesson
+*GET: api/v1/
+*GET: api/v1/:lesson_no
+*PATCH: api/v1/:lesson_no
+\*DELETE: api/v1/:lesson_no
+
+## Vocabularies
+
+*POST: api/v1/create-vocabulary
+*GET: api/v1/
+*GET: api/v1/:id
+*GET: api/v1/lessonwise/:lesson_no
+*PATCH: api/v1/:id
+*DELETE: api/v1/:id
+
+## Tutorials
+
+*POST: api/v1/create-tutorial
+*GET: api/v1/
+*GET: api/v1/:id
+*PATCH: api/v1/:id
+\*DELETE: api/v1/:id
+
 <!-- ## Diagram
 
 Here is the architecture diagram for the application:
@@ -110,41 +145,6 @@ Here is the architecture diagram for the application:
    ```
 
 ---
-
-## API Endpoints
-
-## users
-
-POST: api/v1/create-user
-GET: api/v1/
-GET: api/v1/:email
-PATCH: api/v1/:email
-DELETE: api/v1/:email
-
-## Lessons
-
-POST: api/v1/create-lesson
-GET: api/v1/
-GET: api/v1/:lesson_no
-PATCH: api/v1/:lesson_no
-DELETE: api/v1/:lesson_no
-
-## Vocabularies
-
-POST: api/v1/create-vocabulary
-GET: api/v1/
-GET: api/v1/:id
-GET: api/v1/lessonwise/:lesson_no
-PATCH: api/v1/:id
-DELETE: api/v1/:id
-
-## Tutorials
-
-POST: api/v1/create-tutorial
-GET: api/v1/
-GET: api/v1/:id
-PATCH: api/v1/:id
-DELETE: api/v1/:id
 
 ## Contribution
 
