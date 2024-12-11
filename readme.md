@@ -35,36 +35,36 @@ A web application designed to help users learn Japanese vocabulary through inter
 
 ## users
 
--POST: api/v1/create-user
--GET: api/v1/
--GET: api/v1/:email
--PATCH: api/v1/:email
--DELETE: api/v1/:email
+1.  POST: api/v1/create-user
+2.  GET: api/v1/
+3.  GET: api/v1/:email
+4.  PATCH: api/v1/:email
+5.  DELETE: api/v1/:email
 
 ## Lessons
 
--POST: api/v1/create-lesson
--GET: api/v1/
--GET: api/v1/:lesson_no
--PATCH: api/v1/:lesson_no
--DELETE: api/v1/:lesson_no
+1.  POST: api/v1/create-lesson
+2.  GET: api/v1/
+3.  GET: api/v1/:lesson_no
+4.  PATCH: api/v1/:lesson_no
+5.  DELETE: api/v1/:lesson_no
 
 ## Vocabularies
 
--POST: api/v1/create-vocabulary
--GET: api/v1/
--GET: api/v1/:id
--GET: api/v1/lessonwise/:lesson_no
--PATCH: api/v1/:id
--DELETE: api/v1/:id
+1.  POST: api/v1/create-vocabulary
+2.  GET: api/v1/
+3.  GET: api/v1/:id
+4.  GET: api/v1/lessonwise/:lesson_no
+5.  PATCH: api/v1/:id
+6.  DELETE: api/v1/:id
 
 ## Tutorials
 
--POST: api/v1/create-tutorial
--GET: api/v1/
--GET: api/v1/:id
--PATCH: api/v1/:id
--DELETE: api/v1/:id
+1.  POST: api/v1/create-tutorial
+2.  GET: api/v1/
+3.  GET: api/v1/:id
+4.  PATCH: api/v1/:id
+5.  DELETE: api/v1/:id
 
 <!-- ## Diagram
 
