@@ -41,39 +41,39 @@ src/
 ├── app/
 │ ├── modules/
 │ │ ├── users/
-│ │ │ ├── user.controller.ts # Handles user management actions (CRUD operations)
-│ │ │ ├── user.route.ts # Routes for user CRUD operations
-│ │ │ ├── user.service.ts # Business logic for user management
-│ │ │ ├── user.model.ts # User schema (email, name, role)
-│ │ │ ├── user.validation.ts # Validation schema for user data
+│ │ │ ├── user.controller.ts
+│ │ │ ├── user.route.ts
+│ │ │ ├── user.service.ts
+│ │ │ ├── user.model.ts
+│ │ │ ├── user.validation.ts
 │ │ ├── lessons/
-│ │ │ ├── lesson.controller.ts # Handles lesson management actions
-│ │ │ ├── lesson.route.ts # Routes for lesson CRUD operations
-│ │ │ ├── lesson.service.ts # Business logic for lesson management
-│ │ │ ├── lesson.model.ts # Lesson schema (lesson name, lesson number)
-│ │ │ ├── lesson.validation.ts # Validation schema for lessons
+│ │ │ ├── lesson.controller.ts
+│ │ │ ├── lesson.route.ts
+│ │ │ ├── lesson.service.ts
+│ │ │ ├── lesson.model.ts
+│ │ │ ├── lesson.validation.ts
 │ │ ├── vocabularies/
-│ │ │ ├── vocabulary.controller.ts # Handles vocabulary management actions
-│ │ │ ├── vocabulary.route.ts # Routes for vocabulary CRUD operations
-│ │ │ ├── vocabulary.service.ts # Business logic for vocabulary management
-│ │ │ ├── vocabulary.model.ts # Vocabulary schema (word, meaning, pronunciation)
-│ │ │ ├── vocabulary.validation.ts # Validation schema for vocabularies
+│ │ │ ├── vocabulary.controller.ts
+│ │ │ ├── vocabulary.route.ts
+│ │ │ ├── vocabulary.service.ts
+│ │ │ ├── vocabulary.model.ts
+│ │ │ ├── vocabulary.validation.ts
 │ │ ├── tutorials/
-│ │ │ ├── tutorial.controller.ts # Handles tutorial management actions
-│ │ │ ├── tutorial.route.ts # Routes for tutorial management
-│ │ │ ├── tutorial.service.ts # Business logic for tutorial management
-│ │ │ ├── tutorial.model.ts # Tutorial schema (video name, category, iFrame URL)
-│ │ │ ├── tutorial.validation.ts # Validation schema for tutorials
+│ │ │ ├── tutorial.controller.ts
+│ │ │ ├── tutorial.route.ts
+│ │ │ ├── tutorial.service.ts
+│ │ │ ├── tutorial.model.ts
+│ │ │ ├── tutorial.validation.ts
 ├── config/
-│ ├── db.config.ts # Database configuration (e.g., MongoDB URI)
-│ ├── server.config.ts # Server configuration (port, etc.)
+│ ├── db.config.ts
+│ ├── server.config.ts
 ├── middlewares/
-│ ├── validateRequest.ts # Middleware for request validation
-│ ├── authMiddleware.ts # Middleware for checking authentication
+│ ├── validateRequest.ts
+│ ├── authMiddleware.ts
 ├── utils/
-│ ├── logger.ts # Utility for logging
-├── server.ts # Entry point for the server
-└── app.ts # App configuration and route setup
+│ ├── logger.ts
+├── server.ts
+└── app.ts
 
 ---
 
