@@ -14,4 +14,14 @@ router.post(
 
 router.get('/', UserControllers.AllUsers);
 
+router.get('/:email', UserControllers.getAnUser);
+
+router.patch(
+  '/:email',
+  validateRequest(UserValidation.userValidationSchema),
+  UserControllers.updateAnUser,
+);
+
+router.delete('/:email', UserControllers.deleteAnUser);
+
 export const UserRoutes = router;

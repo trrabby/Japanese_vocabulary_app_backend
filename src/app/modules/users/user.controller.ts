@@ -1,10 +1,11 @@
 import catchAsync from '../../utils/catchAsync';
-import { UserServices } from './user.services';
+import { UserServices } from './user.service';
 import sendResponse from '../../utils/sendResponse';
 import httpStatus from 'http-status';
 import customizedMsg from '../../utils/customisedMsg';
+import { RequestHandler } from 'express';
 
-const createUser = catchAsync(async (req, res) => {
+const createUser: RequestHandler = catchAsync(async (req, res) => {
   const payload = req.body;
 
   const result = await UserServices.createUserIntoDB(payload);
@@ -17,7 +18,7 @@ const createUser = catchAsync(async (req, res) => {
   });
 });
 
-const AllUsers = catchAsync(async (req, res) => {
+const AllUsers: RequestHandler = catchAsync(async (req, res) => {
   const result = await UserServices.findAllUsers();
 
   sendResponse(res, {
@@ -28,7 +29,47 @@ const AllUsers = catchAsync(async (req, res) => {
   });
 });
 
+const getAnUser: RequestHandler = catchAsync(async (req, res) => {
+  const { email } = req.params;
+  const result = await UserServices.getAnUser(email);
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: customizedMsg(result, 'Users'),
+    data: result,
+  });
+});
+
+const updateAnUser: RequestHandler = catchAsync(async (req, res) => {
+  const { email } = req.params;
+  const payload = req.body;
+  const result = await UserServices.updateAnUser(email, payload);
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'User Updated Successfully',
+    data: result,
+  });
+});
+
+const deleteAnUser: RequestHandler = catchAsync(async (req, res) => {
+  const { email } = req.params;
+  const result = await UserServices.deleteAnUser(email);
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'User Deleted Successfully',
+    data: result,
+  });
+});
+
 export const UserControllers = {
   createUser,
   AllUsers,
+  getAnUser,
+  updateAnUser,
+  deleteAnUser,
 };
