@@ -31,11 +31,11 @@ A web application designed to help users learn Japanese vocabulary through inter
 - **Vocabulary Access**:
   - View vocabularies, navigate between entries, listen to pronunciation, and track progress with a completion button.
 
-## Diagram
+<!-- ## Diagram
 
 Here is the architecture diagram for the application:
 
-<p style="font-size: 5px;"> 
+<p style="font-size: 5px;">
     src/
 ├── app/
 │ ├── modules/
@@ -75,7 +75,7 @@ Here is the architecture diagram for the application:
 └── app.ts
 </p>
 
----
+--- -->
 
 ## Installation
 
