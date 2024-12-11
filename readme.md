@@ -113,170 +113,38 @@ Here is the architecture diagram for the application:
 
 ## API Endpoints
 
-# API Endpoints
+## users
 
-## User Management:
+POST: api/v1/create-user
+GET: api/v1/
+GET: api/v1/:email
+PATCH: api/v1/:email
+DELETE: api/v1/:email
 
-- **GET /admin/users**: View all users.
-  - **Description**: Get a list of all users in the system.
-- **GET /admin/users/:email**: View a specific user.
+## Lessons
 
-  - **Description**: Get details of a user by email.
-  - **Parameters**:
-    - `email`: The email of the user.
+POST: api/v1/create-lesson
+GET: api/v1/
+GET: api/v1/:lesson_no
+PATCH: api/v1/:lesson_no
+DELETE: api/v1/:lesson_no
 
-- **PATCH /admin/users/:email**: Update user details.
+## Vocabularies
 
-  - **Description**: Update a user's information, such as role or email.
-  - **Parameters**:
-    - `email`: The email of the user.
-  - **Request Body**:
-    ```json
-    {
-      "role": "admin"
-    }
-    ```
+POST: api/v1/create-vocabulary
+GET: api/v1/
+GET: api/v1/:id
+GET: api/v1/lessonwise/:lesson_no
+PATCH: api/v1/:id
+DELETE: api/v1/:id
 
-- **DELETE /admin/users/:email**: Delete a user.
-  - **Description**: Delete a user by email.
-  - **Parameters**:
-    - `email`: The email of the user.
+## Tutorials
 
----
-
-## Lesson Management:
-
-- **GET /admin/lessons**: View all lessons.
-  - **Description**: Get a list of all lessons in the system.
-- **POST /admin/lessons**: Add a new lesson.
-
-  - **Description**: Create a new lesson.
-  - **Request Body**:
-    ```json
-    {
-      "lesson_name": "Basic Greetings",
-      "lesson_no": "Lesson_1"
-    }
-    ```
-
-- **GET /admin/lessons/:lesson_no**: Get a specific lesson.
-
-  - **Description**: Get details of a specific lesson by its lesson number.
-  - **Parameters**:
-    - `lesson_no`: The lesson's unique number.
-
-- **PATCH /admin/lessons/:lesson_no**: Update lesson.
-
-  - **Description**: Update the details of a specific lesson.
-  - **Parameters**:
-    - `lesson_no`: The lesson's unique number.
-  - **Request Body**:
-    ```json
-    {
-      "lesson_name": "Advanced Greetings"
-    }
-    ```
-
-- **DELETE /admin/lessons/:lesson_no**: Delete lesson.
-  - **Description**: Delete a lesson by its lesson number.
-  - **Parameters**:
-    - `lesson_no`: The lesson's unique number.
-
----
-
-## Vocabulary Management:
-
-- **GET /admin/vocabularies**: View all vocabularies.
-  - **Description**: Get a list of all vocabularies in the system.
-- **POST /admin/vocabularies**: Add a new vocabulary.
-
-  - **Description**: Create a new vocabulary.
-  - **Request Body**:
-    ```json
-    {
-      "word": "ありがとう",
-      "meaning": "Thank you",
-      "pronunciation": "ありがとう",
-      "when_to_say": "When expressing gratitude",
-      "lesson_no": "Lesson_1",
-      "email": "admin@example.com"
-    }
-    ```
-
-- **GET /admin/vocabularies/:id**: View a specific vocabulary.
-
-  - **Description**: Get details of a specific vocabulary by its ID.
-  - **Parameters**:
-    - `id`: The vocabulary's unique identifier.
-
-- **GET /admin/vocabularies/lessonwise/:lesson_no**: Get vocabularies by lesson.
-
-  - **Description**: Get a list of vocabularies for a specific lesson number.
-  - **Parameters**:
-    - `lesson_no`: The lesson number.
-
-- **PATCH /admin/vocabularies/:id**: Update a vocabulary.
-
-  - **Description**: Update details of a specific vocabulary.
-  - **Parameters**:
-    - `id`: The vocabulary's unique identifier.
-  - **Request Body**:
-    ```json
-    {
-      "meaning": "Arigato (Thank you)"
-    }
-    ```
-
-- **DELETE /admin/vocabularies/:id**: Delete a vocabulary.
-  - **Description**: Delete a vocabulary by its ID.
-  - **Parameters**:
-    - `id`: The vocabulary's unique identifier.
-
----
-
-## Tutorial Management:
-
-- **POST /admin/tutorials/create-tutorial**: Add a new tutorial.
-
-  - **Description**: Create a new tutorial.
-  - **Request Body**:
-    ```json
-    {
-      "tutorial_name": "Basic Japanese Greetings",
-      "tutorial_category": "Lesson_1",
-      "tutorial_iFrame_url": "https://www.youtube.com/embed/sample",
-      "created_by": "user_id"
-    }
-    ```
-
-- **GET /admin/tutorials**: View all tutorials.
-
-  - **Description**: Get a list of all tutorials in the system.
-
-- **GET /admin/tutorials/:id**: View a specific tutorial.
-
-  - **Description**: Get details of a tutorial by its ID.
-  - **Parameters**:
-    - `id`: The tutorial's unique identifier.
-
-- **PATCH /admin/tutorials/:id**: Update a tutorial.
-
-  - **Description**: Update the details of a specific tutorial.
-  - **Parameters**:
-    - `id`: The tutorial's unique identifier.
-  - **Request Body**:
-    ```json
-    {
-      "tutorial_name": "Advanced Japanese Greetings"
-    }
-    ```
-
-- **DELETE /admin/tutorials/:id**: Delete a tutorial.
-  - **Description**: Delete a tutorial by its ID.
-  - **Parameters**:
-    - `id`: The tutorial's unique identifier.
-
----
+POST: api/v1/create-tutorial
+GET: api/v1/
+GET: api/v1/:id
+PATCH: api/v1/:id
+DELETE: api/v1/:id
 
 ## Contribution
 
@@ -290,4 +158,4 @@ Here is the architecture diagram for the application:
 
 ## Contact
 
-For inquiries or feedback, contact us at [https://towfiq-portfolio.netlify.app].
+For inquiries or feedback, contact me at [https://towfiq-portfolio.netlify.app].
