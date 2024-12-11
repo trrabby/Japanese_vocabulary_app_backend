@@ -2,10 +2,10 @@
 import AppError from '../../errorHandlers/AppError';
 import httpStatus from 'http-status';
 import { UserServices } from '../users/user.service';
-import { VocabularyModel } from './vocabulary.model';
-import { TVocabulary } from './vocabulary.interface';
+import { Ttutorials } from './tutorials.interface';
+import { TutorialModel } from './tutorial.model';
 
-const createVocabularyIntoDB = async (payload: TVocabulary) => {
+const createTutorialIntoDB = async (payload: Ttutorials) => {
   try {
     // create a Lesson
     const { email } = payload;
@@ -21,20 +21,20 @@ const createVocabularyIntoDB = async (payload: TVocabulary) => {
         throw new Error('You are unauthorized.');
       }
       //create a new vocabulary
-      const newVocabulary = await VocabularyModel.create(payload);
+      const newTutorial = await TutorialModel.create(payload);
 
-      if (!newVocabulary) {
+      if (!newTutorial) {
         throw new AppError(httpStatus.BAD_REQUEST, 'Failed to create Lesson');
       }
-      return newVocabulary;
+      return newTutorial;
     }
   } catch (err: any) {
     throw new Error(err);
   }
 };
 
-const findAllVocabularies = async () => {
-  const result = await VocabularyModel.aggregate([
+const findAllTutorials = async () => {
+  const result = await TutorialModel.aggregate([
     { $match: { isDeleted: false } }, // Filter documents where isDeleted is true
     { $sort: { _id: -1 } }, // Sort by _id in descending order
   ]);
@@ -42,26 +42,16 @@ const findAllVocabularies = async () => {
   return result;
 };
 
-const getAVocabulary = async (id: string) => {
-  const result = await VocabularyModel.findOne({ _id: id }).populate({
+const getATutorial = async (id: string) => {
+  const result = await TutorialModel.findOne({ _id: id }).populate({
     path: 'created_by',
     select: 'name email photoUrl',
   });
   return result;
 };
 
-const getLessonwiseVocabulary = async (lesson_no: string) => {
-  const result = await VocabularyModel.find({ lesson_no, isDeleted: false })
-    .sort({ createdAt: 1 })
-    .populate({
-      path: 'created_by',
-      select: 'name email photoUrl',
-    });
-  return result;
-};
-
-const updateVocabulary = async (id: string, payload: Partial<TVocabulary>) => {
-  const result = await VocabularyModel.findOneAndUpdate(
+const updateTutorial = async (id: string, payload: Partial<Ttutorials>) => {
+  const result = await TutorialModel.findOneAndUpdate(
     { _id: id }, // Match the document where the email matches
     payload, // Apply the update
     {
@@ -72,8 +62,8 @@ const updateVocabulary = async (id: string, payload: Partial<TVocabulary>) => {
   return result;
 };
 
-const deleteAVocabulary = async (id: string) => {
-  const result = await VocabularyModel.findOneAndUpdate(
+const deleteAtutorial = async (id: string) => {
+  const result = await TutorialModel.findOneAndUpdate(
     { _id: id }, // Match the document where the lesson_no matches
     { isDeleted: true }, // Apply the update
     {
@@ -84,11 +74,10 @@ const deleteAVocabulary = async (id: string) => {
   return result;
 };
 
-export const VocabularyServices = {
-  createVocabularyIntoDB,
-  findAllVocabularies,
-  getAVocabulary,
-  getLessonwiseVocabulary,
-  updateVocabulary,
-  deleteAVocabulary,
+export const TutorialServices = {
+  createTutorialIntoDB,
+  findAllTutorials,
+  getATutorial,
+  updateTutorial,
+  deleteAtutorial,
 };

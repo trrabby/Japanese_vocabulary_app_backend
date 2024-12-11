@@ -36,7 +36,7 @@ const getAnUser: RequestHandler = catchAsync(async (req, res) => {
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: customizedMsg(result, 'Users'),
+    message: 'User has been retrieved successfully',
     data: result,
   });
 });
