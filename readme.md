@@ -36,6 +36,7 @@ A web application designed to help users learn Japanese vocabulary through inter
 Here is the architecture diagram for the application:
 
 ![System Architecture Diagram]src/
+
 ├── app/
 │ ├── modules/
 │ │ ├── users/
