@@ -4,6 +4,8 @@
 
 A web application designed to help users learn Japanese vocabulary through interactive lessons and vocabulary entries. Admins can manage users, lessons, vocabularies, and tutorials, while users can access lessons and learn vocabularies interactively.
 
+## Requirement Analysis link: https://docs.google.com/document/d/10x2IGoh5F9CfSaL_C2gawB-lTOCZndKA2v5IVMS50DM/edit?tab=t.0
+
 ## Features
 
 ### Authentication
