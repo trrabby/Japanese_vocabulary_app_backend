@@ -35,9 +35,8 @@ A web application designed to help users learn Japanese vocabulary through inter
 
 Here is the architecture diagram for the application:
 
-![System Architecture Diagram]src/
-
-src/
+<p style="font-size: 10px;"> 
+    src/
 ├── app/
 │ ├── modules/
 │ │ ├── users/
@@ -74,6 +73,7 @@ src/
 │ ├── logger.ts
 ├── server.ts
 └── app.ts
+</p>
 
 ---
 
