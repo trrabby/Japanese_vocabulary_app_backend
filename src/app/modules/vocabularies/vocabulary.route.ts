@@ -14,10 +14,6 @@ router.post(
 
 router.get('/', VocabularyControllers.GetAllVocabularies);
 router.get('/:id', VocabularyControllers.getAVocabulary);
-router.get(
-  '/lessonwise/:lesson_no',
-  VocabularyControllers.GetLessonWiseVocabularies,
-);
 
 router.patch(
   '/:id',

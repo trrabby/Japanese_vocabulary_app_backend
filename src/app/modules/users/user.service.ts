@@ -32,7 +32,7 @@ const findAllUsers = async () => {
 };
 
 const getAnUser = async (email: string) => {
-  const result = await UserModel.find({ email });
+  const result = await UserModel.find({ email, isDeleted: false });
   return result;
 };
 
