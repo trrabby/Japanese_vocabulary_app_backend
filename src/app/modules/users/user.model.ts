@@ -13,7 +13,7 @@ const userSchema = new Schema<TUser>(
     },
     password: {
       type: String,
-      required: true,
+      required: [true, 'Password must be atleast 6 character long'],
     },
 
     photoUrl: {
