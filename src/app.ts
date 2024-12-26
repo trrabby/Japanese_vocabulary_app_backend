@@ -1,13 +1,15 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import express, { Application, Request, Response } from 'express';
+import express, { Application, NextFunction, Request, Response } from 'express';
 import cors from 'cors';
 import globalErrorHandler from './app/MiddleWares/globalerrorhandler';
 import router from './app/routes';
 import notFound from './app/MiddleWares/notFound';
-import jwt from 'jsonwebtoken';
+import jwt, { JwtPayload } from 'jsonwebtoken';
 import cookieParser from 'cookie-parser';
 import { UserModel } from './app/modules/users/user.model';
+import config from './app/config';
+import catchAsync from './app/utils/catchAsync';
 
 const app: Application = express();
 
@@ -59,7 +61,7 @@ app.post('/api/v1/login', async (req: Request, res: Response): Promise<any> => {
       name: user.name,
       photoUrl: user.photoUrl,
     };
-    const token = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET as string, {
+    const token = jwt.sign(payload, config.access_token as string, {
       expiresIn: '1d',
     });
 
@@ -73,27 +75,31 @@ app.post('/api/v1/login', async (req: Request, res: Response): Promise<any> => {
 });
 
 // Middleware to Verify Token
-// const verifyToken = (req: Request, res: Response, next: any) => {
-//   const token = req.cookies?.token;
-//   if (!token) {
-//     return res.status(401).send({ message: 'Unauthorized access' });
-//   }
+export const verifyToken = (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  const token = req.cookies?.token;
+  if (!token) {
+    return res.status(401).send({ message: 'Unauthorized access' });
+  }
 
-//   jwt.verify(
-//     token,
-//     process.env.ACCESS_TOKEN_SECRET as string,
-//     (err, decoded) => {
-//       if (err) {
-//         return res.status(401).send({ message: 'Unauthorized access' });
-//       }
-//       req.user = decoded; // Attach user data to request
-//       next();
-//     },
-//   );
-// };
+  jwt.verify(
+    token,
+    process.env.ACCESS_TOKEN_SECRET as string,
+    (err: any, decoded: any) => {
+      if (err) {
+        return res.status(401).send({ message: 'Unauthorized access' });
+      }
+      req.user = decoded as JwtPayload; // Attach user data to request
+      next();
+    },
+  );
+};
 
 // Logout Endpoint
-app.post('/api/v1/logout', async (_req: Request, res: Response) => {
+app.post('/api/v1/logout', async (req: Request, res: Response) => {
   res
     .clearCookie('token', { ...cookieOptions, maxAge: 0 })
     .send({ success: true });

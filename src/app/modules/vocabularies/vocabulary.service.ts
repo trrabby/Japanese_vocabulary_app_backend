@@ -4,6 +4,7 @@ import httpStatus from 'http-status';
 import { UserServices } from '../users/user.service';
 import { VocabularyModel } from './vocabulary.model';
 import { TVocabulary } from './vocabulary.interface';
+import QueryBuilder from '../../builder/QueryBuilder';
 
 const createVocabularyIntoDB = async (payload: TVocabulary) => {
   try {
@@ -33,13 +34,23 @@ const createVocabularyIntoDB = async (payload: TVocabulary) => {
   }
 };
 
-const findAllVocabularies = async () => {
-  const result = await VocabularyModel.aggregate([
-    { $match: { isDeleted: false } }, // Filter documents where isDeleted is true
-    { $sort: { _id: -1 } }, // Sort by _id in descending order
-  ]);
+const findAllVocabularies = async (query: Record<string, unknown>) => {
+  const vocabularySearchableFields = [
+    'word',
+    'meaning',
+    'pronunciation',
+    'when_to_say',
+  ];
 
-  return result;
+  const vocabularyQuery = new QueryBuilder(VocabularyModel.find(), query)
+    .search(vocabularySearchableFields)
+    .filter()
+    .sort()
+    .paginate()
+    .fields();
+  const meta = await vocabularyQuery.countTotal();
+  const result = await vocabularyQuery.modelQuery;
+  return { result, meta };
 };
 
 const getAVocabulary = async (id: string) => {

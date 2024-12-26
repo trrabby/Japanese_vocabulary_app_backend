@@ -14,6 +14,7 @@ router.post(
 );
 
 router.get('/', LessonControllers.GetAllLessons);
+
 router.get('/:lesson_no', LessonControllers.getALesson);
 router.get(
   '/lessonwise/:lesson_no',

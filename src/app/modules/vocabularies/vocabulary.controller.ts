@@ -18,7 +18,7 @@ const createVocabulary: RequestHandler = catchAsync(async (req, res) => {
 });
 
 const GetAllVocabularies: RequestHandler = catchAsync(async (req, res) => {
-  const result = await VocabularyServices.findAllVocabularies();
+  const result = await VocabularyServices.findAllVocabularies(req.query);
 
   sendResponse(res, {
     statusCode: httpStatus.OK,
