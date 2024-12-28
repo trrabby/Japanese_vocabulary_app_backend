@@ -49,7 +49,7 @@ const findAllVocabularies = async (query: Record<string, unknown>) => {
     .paginate()
     .fields();
   const meta = await vocabularyQuery.countTotal();
-  const result = await vocabularyQuery.modelQuery;
+  const result = await vocabularyQuery.modelQuery.find({ isDeleted: false });
   return { result, meta };
 };
 
