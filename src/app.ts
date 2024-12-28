@@ -74,29 +74,29 @@ app.post('/api/v1/login', async (req: Request, res: Response): Promise<any> => {
   }
 });
 
-// Middleware to Verify Token
-export const verifyToken = (
-  req: Request,
-  res: Response,
-  next: NextFunction,
-) => {
-  const token = req.cookies?.token;
-  if (!token) {
-    return res.status(401).send({ message: 'Unauthorized access' });
-  }
+// // Middleware to Verify Token
+// export const verifyToken = (
+//   req: Request,
+//   res: Response,
+//   next: NextFunction,
+// ) => {
+//   const token = req.cookies?.token;
+//   if (!token) {
+//     return res.status(401).send({ message: 'Unauthorized access' });
+//   }
 
-  jwt.verify(
-    token,
-    process.env.ACCESS_TOKEN_SECRET as string,
-    (err: any, decoded: any) => {
-      if (err) {
-        return res.status(401).send({ message: 'Unauthorized access' });
-      }
-      req.user = decoded as JwtPayload; // Attach user data to request
-      next();
-    },
-  );
-};
+//   jwt.verify(
+//     token,
+//     process.env.ACCESS_TOKEN_SECRET as string,
+//     (err: any, decoded: any) => {
+//       if (err) {
+//         return res.status(401).send({ message: 'Unauthorized access' });
+//       }
+//       req.user = decoded as JwtPayload; // Attach user data to request
+//       next();
+//     },
+//   );
+// };
 
 // Logout Endpoint
 app.post('/api/v1/logout', async (req: Request, res: Response) => {
